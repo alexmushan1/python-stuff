@@ -1,6 +1,5 @@
-import socket
+from socket import create_server
 from tkinter import ttk
-import tkinter.messagebox
 
 
 from gameboard import GameBoard, GameBoardUi
@@ -50,7 +49,7 @@ class Game:
     """
 
     def connect_to_server(self):
-        self.socket_server = socket.create_server(self.parse_and_wipe_host_info())
+        self.socket_server = create_server(self.parse_and_wipe_host_info())
         while True:
             self.connection, _ = self.socket_server.accept()
             self.player_1_name = str(recieve(self.connection), encoding="ascii")

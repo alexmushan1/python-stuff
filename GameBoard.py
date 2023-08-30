@@ -1,5 +1,4 @@
-import tkinter
-from tkinter import ttk
+from tkinter import Tk, ttk
 
 
 class Player:
@@ -21,7 +20,7 @@ class GameBoardUi:
     """
 
     def __init__(self, titile_override):
-        self.root = tkinter.Tk()
+        self.root = Tk()
         self.root.title(titile_override)
         self.frame = ttk.Frame(self.root, padding=10)
         self.frame.grid()

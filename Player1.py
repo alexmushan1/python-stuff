@@ -1,7 +1,5 @@
-import socket
-from tkinter import ttk
-import tkinter
-import tkinter.messagebox
+from socket import create_connection
+from tkinter import ttk, messagebox
 
 from gameboard import GameBoard, GameBoardUi
 
@@ -50,7 +48,7 @@ class Game:
     """
 
     def connect_to_server(self):
-        self.connection = socket.create_connection(self.parse_and_wipe_host_info())
+        self.connection = create_connection(self.parse_and_wipe_host_info())
 
     """
     get the name from user's input, and initialize the ui
@@ -123,9 +121,7 @@ class Game:
             print(f"the winner is {self.game_board.curr_winner}")
         else:
             print("tie")
-        want_to_replay = tkinter.messagebox.askyesno(
-            "title", "do you want to play, y or n? "
-        )
+        want_to_replay = messagebox.askyesno("title", "do you want to play, y or n? ")
         if want_to_replay:
             send(self.connection, "Play Again")
             self.game_board.resetGameBoard()
@@ -174,7 +170,7 @@ class Game:
 def main():
     game = Game()
     game.run()
-    # with socket.create_connection(("127.0.0.1", 8000)) as conn:
+    # with create_connection(("127.0.0.1", 8000)) as conn:
     #     send(conn, player_1_name)
     #     player_2_name = str(recieve(conn), encoding="ascii")
     #     game_board = GameBoard(player_1_name, player_2_name)
